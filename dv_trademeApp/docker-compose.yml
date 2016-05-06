@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  srv:
+    image: trademego
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - "db"
+  db:
+    image: dv_pg95
+    ports:
+      - "5432:5432"
