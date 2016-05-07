@@ -2,13 +2,17 @@ version: '2'
 
 services:
   srv:
-    image: trademego
-    build: .
-    ports:
-      - "8000:8000"
+    build: ../dv_trademe_go
     depends_on:
-      - "db"
+      - db
   db:
-    image: dv_pg95
+    build: ../dv_postgres
     ports:
       - "5432:5432"
+    depends_on:
+      - dbdata
+
+  dbdata:
+    build: ../dv_postgres
+    volumes:
+      - /var/lib/postgresql

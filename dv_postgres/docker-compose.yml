@@ -1,12 +1,14 @@
-dbdata:
-  image: davilj/postgresql:9.3
-  volumes:
-    - /var/lib/postgresql
-  command: true
+version: '2'
 
-db:
-  image: andreagrandi/postgresql:9.3
-  volumes_from:
-    - dbdata
-  ports:
-    - "5432:5432"
+services:
+  dbdata:
+    image: dv_pg95
+    volumes:
+      - /var/lib/postgresql
+
+  db:
+    image: dv_pg95
+    volumes_from:
+      - dbdata
+    ports:
+      - "5432:5432"
